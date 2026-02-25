@@ -70,6 +70,7 @@ const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: { feat
 );
 
 const PRDModal = ({ isOpen, onClose, feature }: any) => {
+  if (!isOpen || !feature) return null;
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
       <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-2xl w-full border border-slate-700">
