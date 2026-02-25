@@ -69,9 +69,7 @@ const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: { feat
   </div>
 );
 
-const PRDModal = ({ isOpen, onClose, feature }: { isOpen: any, onClose: any, feature: any }) => (
-  if (!feature) return null;
-
+const PRDModal = ({ isOpen, onClose, feature }: any) => {
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
       <div className="bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-2xl w-full border border-slate-700">
@@ -168,7 +166,7 @@ export default function Home() {
         </div>
       </main>
       
-      <PRDModal feature={modalFeature} onClose={handleCloseModal} />
+      <PRDModal feature={modalFeature} onClose={handleCloseModal} isOpen={undefined} />
 
       <footer className="text-center mt-12 text-slate-500">
         <p>Built with Next.js, Tailwind CSS, and Lucide Icons.</p>
