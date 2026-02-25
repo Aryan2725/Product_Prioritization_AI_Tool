@@ -11,14 +11,13 @@ const getImpactLabel = (impactValue: any) => {
   return 'Minimal';
 };
 
-// Placeholder for FeatureCard and PRDModal components
 const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) => (
   <div className={`p-6 rounded-lg shadow-lg transition-all duration-300 ${isTopPriority ? 'bg-emerald-900/50 ring-2 ring-emerald-500' : 'bg-slate-800'}`}>
     <div className="flex justify-between items-center mb-4">
       <input
         type="text"
         value={feature.name}
-        onChange={(e) => onChange(feature.id, 'name', e.target.value)}
+        onChange={(e: any) => onChange(feature.id, 'name', e.target.value)}
         placeholder="Feature/Project Idea"
         className="text-xl font-bold bg-black/20 px-2 rounded-t-md border-b-2 border-slate-600 focus:outline-none focus:border-indigo-500 flex-grow"
       />
@@ -30,30 +29,28 @@ const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) =
       )}
     </div>
     
-    {/* Sliders */}
     <div className="space-y-6">
       <div>
         <label className="flex justify-between text-slate-400"><span>Reach</span><span>{feature.reach.toLocaleString()} users</span></label>
-        <input type="range" min="100" max="10000" step="100" value={feature.reach} onChange={(e) => onChange(feature.id, 'reach', parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+        <input type="range" min="100" max="10000" step="100" value={feature.reach} onChange={(e: any) => onChange(feature.id, 'reach', parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
       </div>
       <div>
         <label className="flex justify-between text-slate-400">
           <span>Impact</span>
           <span>{feature.impact} - {getImpactLabel(feature.impact)}</span>
         </label>
-        <input type="range" min="0.25" max="3" step="0.25" value={feature.impact} onChange={(e) => onChange(feature.id, 'impact', parseFloat(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+        <input type="range" min="0.25" max="3" step="0.25" value={feature.impact} onChange={(e: any) => onChange(feature.id, 'impact', parseFloat(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
       </div>
       <div>
         <label className="flex justify-between text-slate-400"><span>Confidence</span><span>{feature.confidence}%</span></label>
-        <input type="range" min="50" max="100" step="1" value={feature.confidence} onChange={(e) => onChange(feature.id, 'confidence', parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+        <input type="range" min="50" max="100" step="1" value={feature.confidence} onChange={(e: any) => onChange(feature.id, 'confidence', parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
       </div>
       <div>
         <label className="flex justify-between text-slate-400"><span>Effort</span><span>{feature.effort} months</span></label>
-        <input type="range" min="1" max="5" step="0.5" value={feature.effort} onChange={(e) => onChange(feature.id, 'effort', parseFloat(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
+        <input type="range" min="1" max="5" step="0.5" value={feature.effort} onChange={(e: any) => onChange(feature.id, 'effort', parseFloat(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500" />
       </div>
     </div>
 
-    {/* Score and PRD Button */}
     <div className="mt-8 flex justify-between items-center">
       <div>
         <span className="text-slate-400 text-sm">RICE Score</span>
@@ -72,7 +69,7 @@ const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) =
   </div>
 );
 
-const PRDModal = ({ feature, onClose }) => {
+const PRDModal = ({ feature, onClose }: any) => {
   if (!feature) return null;
 
   return (
@@ -114,27 +111,27 @@ export default function Home() {
   ]);
   const [modalFeature, setModalFeature] = useState(null);
 
-  const calculateRiceScore = (feature) => {
+  const calculateRiceScore = (feature: any) => {
     if (feature.effort === 0) return 0;
     return (feature.reach * feature.impact * (feature.confidence / 100)) / feature.effort;
   };
 
   const updatedFeatures = useMemo(() => {
-    return features.map(f => ({ ...f, score: calculateRiceScore(f) }));
+    return features.map((f: any) => ({ ...f, score: calculateRiceScore(f) }));
   }, [features]);
 
   const topFeatureId = useMemo(() => {
     if (updatedFeatures.length === 0) return null;
-    return updatedFeatures.reduce((prev, current) => (prev.score > current.score) ? prev : current).id;
+    return updatedFeatures.reduce((prev: any, current: any) => (prev.score > current.score) ? prev : current).id;
   }, [updatedFeatures]);
 
-  const handleFeatureChange = (id, field, value) => {
-    setFeatures(prevFeatures =>
-      prevFeatures.map(f => (f.id === id ? { ...f, [field]: value } : f))
+  const handleFeatureChange = (id: any, field: any, value: any) => {
+    setFeatures((prevFeatures: any) =>
+      prevFeatures.map((f: any) => (f.id === id ? { ...f, [field]: value } : f))
     );
   };
   
-  const handleGeneratePRD = (feature) => {
+  const handleGeneratePRD = (feature: any) => {
     setModalFeature(feature);
   };
 
@@ -159,7 +156,7 @@ export default function Home() {
 
       <main>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {updatedFeatures.map(feature => (
+          {updatedFeatures.map((feature: any) => (
             <FeatureCard
               key={feature.id}
               feature={feature}
