@@ -11,7 +11,7 @@ const getImpactLabel = (impactValue: any) => {
   return 'Minimal';
 };
 
-const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) => (
+const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: { feature: any, onChange: any, isTopPriority: any, onGeneratePRD: any }) => (
   <div className={`p-6 rounded-lg shadow-lg transition-all duration-300 ${isTopPriority ? 'bg-emerald-900/50 ring-2 ring-emerald-500' : 'bg-slate-800'}`}>
     <div className="flex justify-between items-center mb-4">
       <input
@@ -69,7 +69,7 @@ const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) =
   </div>
 );
 
-const PRDModal = ({ feature, onClose }: any) => {
+const PRDModal = ({ isOpen, onClose, feature }: { isOpen: any, onClose: any, feature: any }) => (
   if (!feature) return null;
 
   return (
