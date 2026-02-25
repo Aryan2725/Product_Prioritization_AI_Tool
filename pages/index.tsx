@@ -12,7 +12,7 @@ const getImpactLabel = (impactValue: any) => {
 };
 
 // Placeholder for FeatureCard and PRDModal components
-const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) => {
+const FeatureCard = ({ feature, onChange, isTopPriority, onGeneratePRD }: any) => (
   <div className={`p-6 rounded-lg shadow-lg transition-all duration-300 ${isTopPriority ? 'bg-emerald-900/50 ring-2 ring-emerald-500' : 'bg-slate-800'}`}>
     <div className="flex justify-between items-center mb-4">
       <input
