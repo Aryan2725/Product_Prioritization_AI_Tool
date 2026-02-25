@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import Head from 'next/head';
 import { Sliders, BrainCircuit, Trophy } from 'lucide-react';
 
-const getImpactLabel = (impactValue) => {
+const getImpactLabel = (impactValue: any) => {
   if (impactValue >= 3) return 'Massive';
   if (impactValue >= 2) return 'High';
   if (impactValue >= 1) return 'Medium';
